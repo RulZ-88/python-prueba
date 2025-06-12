@@ -1,9 +1,15 @@
+import json
 # Lista de productos disponibles y sus precios
 productos = ["Pan", "Leche", "Huevos", "Arroz", "Jugo"]
 precios = [1000, 1200, 2000, 1500, 1800]
 
 # Lista para guardar productos seleccionados
 carrito = []
+try:
+    with open("carrito.json", "r") as archivo:
+        carrito = json.load(archivo)
+except FileNotFoundError:
+    carrito = []
 
 while True:
     print("\n------ MENÚ PRINCIPAL ------")
@@ -16,19 +22,19 @@ while True:
 
     if opcion == "1":
         print("\n--- Menú de Productos ---")
-        for i in range(len(productos)):
-            print(f"{i+1}. {productos[i]} - ${precios[i]}")
+        for i, producto in enumerate(productos, start=1):
+            print(f"{i}. {producto} - ${precios[i-1]}")
 
-        seleccion = input("Seleccione el número del producto que desea agregar: ")
-        if seleccion.isdigit():
-            seleccion = int(seleccion)
-            if 1 <= seleccion <= 5:
-                carrito.append(seleccion - 1)  # Guardamos el índice del producto
+        
+        try:
+            seleccion = int(input("Seleccione el número del producto que desea agregar: "))
+            if 1 <= seleccion <= len(productos):
+                carrito.append(seleccion - 1)
                 print(f"✅ Producto '{productos[seleccion - 1]}' agregado al carrito.")
             else:
-                print("❌ Opción inválida.")
-        else:
-            print("⚠️ Por favor, ingrese un número válido.")
+                print("❌ Número fuera de rango.")
+        except ValueError:
+            print("⚠️ Entrada inválida. Ingrese un número.")
 
     elif opcion == "2":
         if carrito:
@@ -39,14 +45,19 @@ while True:
             print("🛒 La canasta está vacía.")
 
     elif opcion == "3":
-        total = 0
-        for i in carrito:
-            total += precios[i]
+        total = sum(precios[i] for i in carrito)
         print(f"\n💰 Total a pagar: ${total}")
 
     elif opcion == "4":
+        with open("carrito.json", "w") as archivo:
+         json.dump(carrito, archivo)
         print("👋 Gracias por su compra. ¡Hasta luego!")
         break
 
     else:
         print("⚠️ Opción no válida. Intente nuevamente.")
+
+
+
+
+

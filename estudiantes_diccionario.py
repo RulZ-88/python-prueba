@@ -192,7 +192,7 @@ estudiantes = [
     }
 ]
 
-print(estudiantes[0]["asignaturas"][0]["notas"][1])
+print(estudiantes[1]["asignaturas"][0]["notas"][1])
 
 suma_notas = 0
 contador_notas = 0
@@ -224,3 +224,18 @@ for estudiante in estudiantes:
     print(f"Estudiante: {estudiante['nombre']}")
     for asignatura in estudiante["asignaturas"]:
         print(f"  Asignatura: {asignatura['nombre']}, Promedio: {asignatura['promedio']}🗒️")
+
+
+def buscar_estudiante(nombre, apellido=None):
+    coincidencias = []
+    for i, est in enumerate(estudiantes):
+        if apellido:
+            if est["nombre"] == nombre and est["apellido"] == apellido:
+                coincidencias.append((i, est))
+        else:
+            if est["nombre"] == nombre:
+                coincidencias.append((i, est))
+    
+    return coincidencias
+
+
