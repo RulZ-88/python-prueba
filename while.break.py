@@ -2,7 +2,7 @@
 
 
 while True:
-    secreta= input("adivina la palabra secreta \n") 
+    secreta= input("adivina la palabra secreta \n").lower() 
     if secreta == "chupacabra":
      break
 

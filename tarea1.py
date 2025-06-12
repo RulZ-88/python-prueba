@@ -10,8 +10,8 @@ for i in range(3):
     usuario = input("Ingrese un nombre: ")
     nombres.append(usuario)
 
-# Encontrar el nombre con mayor cantidad de caracteres
-nombre_mas_largo = nombres[0]  # asumimos que el primero es el más largo inicialmente
+
+nombre_mas_largo = nombres[0]  
 
 for nombre in nombres:
     if len(nombre) > len(nombre_mas_largo):
