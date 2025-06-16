@@ -4,7 +4,7 @@ import unicodedata
 def quitar_tildes(texto):
     return ''.join(c for c in unicodedata.normalize('NFD', texto) if unicodedata.category(c) != 'Mn')
 
-# Datos de estudiantes
+
 estudiantes = [
     {
         "nombre": "Ana", "apellido": "González", "correo": "ana.gonzalez@email.com",
@@ -15,7 +15,20 @@ estudiantes = [
     },
     {
         "nombre": "Mario", "apellido": "Meléndez", "correo": "tio_demonio@email.com", "telefono": "950526636",
-        "asignaturas": []
+        "asignaturas": [
+            {
+                "codigo": "NEC666", "nombre": "Necromorphia","horario":"domingos","notas":[7.0,6.9,6.8]
+            }
+        ]
+        {
+            "nombre": "joaquin", "apellido":"osorio", "correo":"joaquin.osorio@gmail.com",
+            "asignaturas":[
+                {"nombre":"matematicas","notas":[6.5,7.0,5.8,5.1],
+                 "nombre":"historia","notas":[6.9,5.9,7.0,6.5]
+                }
+
+            ]
+        }
     },
     {
         "nombre": "Miguél", "apellido": "Vargas", "correo": "miguel.vargas@email.com",
@@ -26,7 +39,7 @@ estudiantes = [
     }
 ]
 
-# Búsqueda de estudiantes
+
 def buscar_estudiante(nombre, apellido=None):
     nombre = quitar_tildes(nombre.lower())
     apellido = quitar_tildes(apellido.lower()) if apellido else None
@@ -47,7 +60,7 @@ def buscar_estudiante(nombre, apellido=None):
     else:
         print("No se encontraron coincidencias.")
 
-# Entrada del usuario
+
 nombre_usuario = input("Ingrese el nombre del estudiante: ").strip()
 apellido_usuario = input("Ingrese el apellido del estudiante (puede dejar vacío): ").strip()
 

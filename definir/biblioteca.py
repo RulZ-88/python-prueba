@@ -47,3 +47,20 @@ libros = [
     {"id": 9, "titulo": "El túnel", "autor": "Ernesto Sabato", "ISBN": "978-9500420305", "paginas": 160, "cantidad_disponible": 2},
     {"id": 10, "titulo": "Pedro Páramo", "autor": "Juan Rulfo", "ISBN": "978-6073142360", "paginas": 144, "cantidad_disponible": 8}
 ]
+
+
+while True:
+ print("""
+ ****************************
+       ¡Bienvenido!
+ 1 - Buscar usuarios
+ 2 - Registrar un usuario
+ 3 - Registrar un libro
+    """)
+ eleccion=input("digite la opcion : \n")
+       
+       
+       
+       
+       
+       

@@ -2,7 +2,6 @@ entradas_disponibles = 50
 MAX_ENTRADAS = 50
 
 
-
 while True:
     print("""
 ***** Cine brodo *****

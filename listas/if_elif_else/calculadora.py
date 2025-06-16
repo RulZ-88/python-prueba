@@ -51,14 +51,14 @@ elif numero == 5:
 
 elif numero == 6:
 
-    print("Eligste exponente \n")
+    print("Eligiste exponente \n")
     numero = int(input("Introduce el primer número:"))
     numero **= int(input("Introduce el segundo número:"))
     print("El resultado del exponente es:", numero)
 
 elif numero == 7:
 
-    print("Eligste módulo o resto \n")
+    print("Eligiste módulo o resto \n")
     numero = int(input("Introduce el primer número:"))
     numero %= int(input("Introduce el segundo número:"))
     print("El módulo o resto es:", numero)
@@ -67,7 +67,7 @@ else:
     print("La opción elegida no existe, vuelve a intentar.")
 
 
-input("jugador 1 , elije tu tipo de pokémon : \n")
+
 
 
 

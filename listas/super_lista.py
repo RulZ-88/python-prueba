@@ -33,7 +33,7 @@ while True:
                 print(f"✅ Producto '{productos[seleccion - 1]}' agregado al carrito.")
             else:
                 print("❌ Número fuera de rango.")
-        except ValueError:
+        except ValueError:  
             print("⚠️ Entrada inválida. Ingrese un número.")
 
     elif opcion == "2":
