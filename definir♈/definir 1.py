@@ -7,8 +7,10 @@ name = input("Ingresa tu nombre: ")
 hello(name) # invocación de la función
  
 
-def message(number):
-    print("Ingresa un número:", number)
- 
-message(1)
+def message(a="number",b="nombre"):
+    print(f"su numero es : {a} su nombre es {b}")
+
+a= int(input("ingrese un numero"))
+b= input("ingrese su nombre")
+message()
  

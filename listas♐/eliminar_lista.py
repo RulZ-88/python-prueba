@@ -1,23 +1,3 @@
-numeros = int(input("¿Cuántos números deseas ingresar? "))
-lista= []  
-
-for i in range(numeros):
-    numero2 = input("Ingresa un número: ")
-    lista.append(numero2)
-   
-
-print(f"Lista números: {numeros}, lista: {lista}")
-
-numeros_eliminados = []
-numeros_eliminados.append(lista.remove(input("¿Qué número deseas eliminar? ")))
-numeros_eliminados.append(lista.remove(input("¿Qué número deseas eliminar? ")))
-
-
-print(f"Lista actual: {lista} \nLista números eliminados: {numeros_eliminados}")
-
-
-
-
 
 numeros = int(input("¿Cuántos datos deseas ingresar? "))
 lista = []

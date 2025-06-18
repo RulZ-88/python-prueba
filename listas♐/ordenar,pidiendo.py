@@ -3,7 +3,7 @@ swapped = True
 num = int(input("¿Cuántos elementos deseas ordenar?: "))
 
 for i in range(num):
-    val = input("ruth aguirre ingrese sus palabras : \n")
+    val = input(" ingrese sus palabras : \n")
     my_list.append(val)
 
 while swapped:
