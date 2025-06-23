@@ -65,19 +65,25 @@ def registrar_usuario():
    else:
     nombre = input("ingrese el nombre del usuario   ")
     apellido= input("ingrese el apellido   ")
-    usuarios.append({"nombre":nombre,"apellido":apellido,"rut":rut})
+    usuarios.append({"nombre":nombre,"apellido":apellido,"rut":rut,"libros":[]})
 
 def prestamo_libro(usuario_encontrado):
-  eleccion=input("ingrese el titulo del libro a prestar:   ")
+  
   for libro in libros:
-   if libro["titulo"] == eleccion:
+   print(f'id : {libro["id"]} -  {libro["titulo"]} -cantidad disponible: {libro["cantidad_disponible"]}')
+  eleccion=int(input("ingrese el ID del libro a prestar:   "))
+  for libro in libros:
+   if libro["id"] == eleccion:
       if libro ["cantidad_disponible"] > 0:
         usuario_encontrado["libros"].append(libro["titulo"])
         libro["cantidad_disponible"] -= 1
-        print(f" se ah prestado el libro {libro["titulo"]} al usuario {usuario_encontrado["nombre"], ["apellido"]}")
+        print(f" se ah prestado el libro {libro['titulo']} al usuario {usuario_encontrado['nombre']} {usuario_encontrado ['apellido']}")
+        return
+       
       else:
-       print("el libro no esta disponible ")  
-   else:
+       print("No hay ejemplares disponibles del libro ")
+       return  
+  else:
      print("no se encontro el libro")   
    
     
@@ -100,17 +106,17 @@ while True:
 
  
   if usuario_encontrado:
-   print(f"Usuario encontrado {usuario_encontrado['nombre']} {usuario_encontrado['apellido']}")
+   print(f"Usuario encontrado {usuario_encontrado['nombre']} {usuario_encontrado['apellido']} {usuario_encontrado['libros']}")
    while True:
     print(""" 
           1-Realizar un préstamo de un libro
           2- Realizar la devolución de un libro 
           3- volver al menú principal """)
-          
-   
     opcion_submenu=int(input("digite su opcion   "))
     if opcion_submenu == 1:
       prestamo_libro(usuario_encontrado)
+          
+   
      
      
     elif opcion_submenu == 2 :
