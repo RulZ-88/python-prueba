@@ -27,20 +27,28 @@ def sumar_numeros(numeros):
     
    
 
-def multiplicar_numeros():
+def multiplicar_numeros(numeros):
     '''
     Esta función debe multiplicar todos los números que ingresen en una lista y entregar el resultado final.
     Evidentemente tiene un argumento de entrada que debe ser una lista de números reales y un retorno con el resultado
     '''
-    return
+    resultado = 1
+    for numero in numeros:
+        resultado*=float(numero)
+    return resultado 
 
-def dividir_numeros():
+
+def dividir_numeros(numeros):
     '''
     Esta función debe dividir todos los números que ingresen en una lista y entregar el resultado final.
     Evidentemente tiene un argumento de entrada que debe ser una lista de números reales y un retorno con el resultado
     Debe verificar ZeroDivisionError
     '''
-    return
+    resultado=float(numeros[0])
+    for numero in numeros[1:]:
+        resultado/= float(numero)
+
+    return resultado
 
 def calcular_factorial():
     '''
@@ -96,6 +104,6 @@ while True:
         numeros = numeros.split(" ")
         if verificar_numeros(numeros):
             resultado = dividir_numeros(numeros)
-            print("La multiplicación es: ", resultado)
+            print("La division es: ", resultado)
         else:
             print("else?")       

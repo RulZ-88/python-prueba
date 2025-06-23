@@ -12,5 +12,5 @@ def message(a="number",b="nombre"):
 
 a= int(input("ingrese un numero"))
 b= input("ingrese su nombre")
-message()
+message(a,b)
  

@@ -15,3 +15,8 @@ while swapped:
                
 print("Ordenada:")
 print(my_list)
+
+
+my_list = ["zorro", "abeja", "gato"]
+my_list.sort()
+print(my_list)  # ['abeja', 'gato', 'zorro']

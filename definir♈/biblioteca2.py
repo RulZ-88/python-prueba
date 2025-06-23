@@ -35,7 +35,7 @@ def buscar_usuario(rut):
     return None
 
 def registrar_usuario():
-    try:
+    
         nombre = input("Ingrese nombre del usuario: ")
         apellido = input("Ingrese apellido del usuario: ")
         rut = input("Ingrese RUT del usuario: ")
@@ -44,8 +44,7 @@ def registrar_usuario():
             return
         usuarios.append({"nombre": nombre, "apellido": apellido, "rut": rut, "libros": []})
         print("✅ Usuario registrado exitosamente.")
-    except Exception as e:
-        print(f"❌ Ha ocurrido un error al registrar el usuario: {e}")
+   
 
 def registrar_libro():
     try:

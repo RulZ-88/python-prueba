@@ -28,11 +28,12 @@ usuarios = [
     {"nombre": "Camila", "apellido": "Pérez", "rut": "12182343-5", "libros": []},
     {"nombre": "Jorge", "apellido": "Muñoz", "rut": "14044461-9", "libros": []},
     {"nombre": "María", "apellido": "Rojas", "rut": "16149391-0", "libros": []},
-    {"nombre": "Diego", "apellido": "Díaz", "rut": "10407062-4", "libros": [0]},
+    {"nombre": "Diego", "apellido": "Díaz", "rut": "10407062-4", "libros": []},
     {"nombre": "Lucía", "apellido": "Soto", "rut": "19306158-3", "libros": []},
     {"nombre": "Pablo", "apellido": "Torres", "rut": "14864522-5", "libros": []},
     {"nombre": "Valentina", "apellido": "Contreras", "rut": "15592214-1", "libros": []},
-    {"nombre": "Tomás", "apellido": "Silva", "rut": "10516040-5", "libros": []}
+    {"nombre": "Tomás", "apellido": "Silva", "rut": "10516040-5", "libros": []},
+    {"nombre": "Mario", "apellido": "Melendez","rut":"18078662-7","libros":[]}
 ]
 
 libros = [
@@ -49,15 +50,99 @@ libros = [
 ]
 
 
+def buscar_usuario(rut):
+ for usuario in usuarios:
+  if usuario["rut"] == rut:
+   return usuario
+ return None
+
+def registrar_usuario():
+ 
+   rut=input("ingrese el rut del usuario   ")
+   if buscar_usuario(rut):
+    print("El rut ingresado ya se encuentra registrado")
+    return
+   else:
+    nombre = input("ingrese el nombre del usuario   ")
+    apellido= input("ingrese el apellido   ")
+    usuarios.append({"nombre":nombre,"apellido":apellido,"rut":rut})
+
+def prestamo_libro(usuario_encontrado):
+  eleccion=input("ingrese el titulo del libro a prestar:   ")
+  for libro in libros:
+   if libro["titulo"] == eleccion:
+      if libro ["cantidad_disponible"] > 0:
+        usuario_encontrado["libros"].append(libro["titulo"])
+        libro["cantidad_disponible"] -= 1
+        print(f" se ah prestado el libro {libro["titulo"]} al usuario {usuario_encontrado["nombre"], ["apellido"]}")
+      else:
+       print("el libro no esta disponible ")  
+   else:
+     print("no se encontro el libro")   
+   
+    
+    
 while True:
+
+
  print("""
  ****************************
        ¡Bienvenido!
- 1 - Buscar usuarios
+ 1 - Buscar usuario por rut
  2 - Registrar un usuario
  3 - Registrar un libro
+ 4 - Salir
     """)
- eleccion=input("digite la opcion : \n")
+ eleccion_usuario=int(input("digite la opcion : \n"))
+ if eleccion_usuario == 1:
+  rut=input("ingrese el rut sin puntos y con guion:   ")
+  usuario_encontrado=buscar_usuario(rut)
+
+ 
+  if usuario_encontrado:
+   print(f"Usuario encontrado {usuario_encontrado['nombre']} {usuario_encontrado['apellido']}")
+   while True:
+    print(""" 
+          1-Realizar un préstamo de un libro
+          2- Realizar la devolución de un libro 
+          3- volver al menú principal """)
+          
+   
+    opcion_submenu=int(input("digite su opcion   "))
+    if opcion_submenu == 1:
+      prestamo_libro(usuario_encontrado)
+     
+     
+    elif opcion_submenu == 2 :
+     print("")
+     
+    elif  opcion_submenu == 3:
+     break
+    else:
+     print("opcion no valida")
+
+  
+  else:
+    print("usuario no encontrado , desea registrarlo?") 
+     
+ elif eleccion_usuario == 2:
+  registrar_usuario()
+ elif eleccion_usuario == 3:
+  print("")
+  
+ elif eleccion_usuario == 4:
+  print("hasta pronto!")
+  break
+ else:
+  print("opcion invalida")
+
+  
+ 
+  
+  
+  
+  
+
        
        
        

@@ -7,38 +7,48 @@ def quitar_tildes(texto):
 
 estudiantes = [
     {
-        "nombre": "Ana", "apellido": "González", "correo": "ana.gonzalez@email.com",
+        "nombre": "Ana",
+        "apellido": "González",
+        "correo": "ana.gonzalez@email.com",
         "asignaturas": [
             {"codigo": "MAT101", "nombre": "Matemáticas", "horario": "Lunes 8:00-10:00", "notas": [5.5, 6.7, 4.3, 6.1]},
             {"codigo": "FIS101", "nombre": "Física", "horario": "Miércoles 10:00-12:00", "notas": [3.9, 5.2, 4.8, 6.0]}
         ]
     },
     {
-        "nombre": "Mario", "apellido": "Meléndez", "correo": "tio_demonio@email.com", "telefono": "950526636",
+        "nombre": "Mario",
+        "apellido": "Meléndez",
+        "correo": "tio_demonio@email.com",
+        "telefono": "950526636",
         "asignaturas": [
             {
-                "codigo": "NEC666", "nombre": "Necromorphia","horario":"domingos","notas":[7.0,6.9,6.8]
+                "codigo": "NEC666",
+                "nombre": "Necromorphia",
+                "horario": "Domingos",
+                "notas": [7.0, 6.9, 6.8]
             }
         ]
-        {
-            "nombre": "joaquin", "apellido":"osorio", "correo":"joaquin.osorio@gmail.com",
-            "asignaturas":[
-                {"nombre":"matematicas","notas":[6.5,7.0,5.8,5.1],
-                 "nombre":"historia","notas":[6.9,5.9,7.0,6.5]
-                }
-
-            ]
-        }
     },
     {
-        "nombre": "Miguél", "apellido": "Vargas", "correo": "miguel.vargas@email.com",
+        "nombre": "Joaquín",
+        "apellido": "Osorio",
+        "correo": "joaquin.osorio@gmail.com",
         "asignaturas": [
-            {"codigo": "HIS101", "nombre": "Historia", "horario": "Lunes 11:00-13:00", "notas": [4.4, 5.0, 5.2, 4.8]},
-            {"codigo": "LIT101", "nombre": "Literatura", "horario": "Viernes 9:00-11:00", "notas": [6.1, 6.3, 6.5, 6.4]}
+            {
+                "codigo": "MAT102",
+                "nombre": "Matemáticas",
+                "horario": "Martes 9:00-11:00",
+                "notas": [6.5, 7.0, 5.8, 5.1]
+            },
+            {
+                "codigo": "HIS101",
+                "nombre": "Historia",
+                "horario": "Jueves 14:00-16:00",
+                "notas": [6.9, 5.9, 7.0, 6.5]
+            }
         ]
     }
 ]
-
 
 def buscar_estudiante(nombre, apellido=None):
     nombre = quitar_tildes(nombre.lower())
