@@ -85,6 +85,9 @@ def prestamo_libro(usuario_encontrado):
        return  
   else:
      print("no se encontro el libro")   
+
+def devolucion_libro(usuario_encontrado):
+ 
    
     
     
@@ -106,7 +109,7 @@ while True:
 
  
   if usuario_encontrado:
-   print(f"Usuario encontrado {usuario_encontrado['nombre']} {usuario_encontrado['apellido']} {usuario_encontrado['libros']}")
+   print(f"Usuario encontrado {usuario_encontrado['nombre']} {usuario_encontrado['apellido']}libros: {usuario_encontrado['libros']}")
    while True:
     print(""" 
           1-Realizar un préstamo de un libro
@@ -115,17 +118,18 @@ while True:
     opcion_submenu=int(input("digite su opcion   "))
     if opcion_submenu == 1:
       prestamo_libro(usuario_encontrado)
-          
-   
-     
-     
     elif opcion_submenu == 2 :
      print("")
-     
     elif  opcion_submenu == 3:
      break
     else:
      print("opcion no valida")
+          
+   
+     
+     
+     
+     
 
   
   else:

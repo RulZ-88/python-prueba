@@ -10,7 +10,8 @@ usuarios = [
     {"nombre": "Lucía", "apellido": "Soto", "rut": "19306158-3", "libros": []},
     {"nombre": "Pablo", "apellido": "Torres", "rut": "14864522-5", "libros": []},
     {"nombre": "Valentina", "apellido": "Contreras", "rut": "15592214-1", "libros": []},
-    {"nombre": "Tomás", "apellido": "Silva", "rut": "10516040-5", "libros": []}
+    {"nombre": "Tomás", "apellido": "Silva", "rut": "10516040-5", "libros": []},
+    {"nombre": "mario", "apellido": "melendez", "rut": "18078662-7", "libros": []}
 ]
 
 libros = [
@@ -64,7 +65,7 @@ def prestar_libro(usuario):
         print("📚 Lista de libros disponibles:")
         for libro in libros:
             print(f'{libro["id"]} - {libro["titulo"]} (Disponibles: {libro["cantidad_disponible"]})')
-        id_libro = int(input("Ingrese el ID del libro a prestar: "))
+        id_libro = int(input("seleccione el ID del libro a prestar: "))
         for libro in libros:
             if libro["id"] == id_libro:
                 if libro["cantidad_disponible"] > 0:
