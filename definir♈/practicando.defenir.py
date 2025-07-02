@@ -1,15 +1,15 @@
 def sumar(lista_numeros):
     return sum(lista_numeros)
 
-entrada = input("Ingrese los números a sumar separados por coma (ej: 5,10,15): ")
+entrada = input("Ingrese los números a sumar separados por signo '+' (ej: 5,10,15): ")
 usuario = [int(num.strip()) for num in entrada.split("+")]
 resultado = sumar(usuario)
 
 print("La suma de los números es:", resultado)
 
 
-def sumar(lista_numeros):
-    return sum(lista_numeros)
+def sumar(numeros):
+    return sum(numeros)
 
 numeros = []
 
