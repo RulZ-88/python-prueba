@@ -12,6 +12,7 @@ def sumar():
             numero = int(entrada)
         except ValueError:
             print("⚠️ Entrada inválida. Por favor ingrese un número.")
+            continue
             
 
         if numero == 0:

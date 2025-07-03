@@ -1,1 +1,1 @@
-{"nombre": "Sanador", "emoji": "\ud83d\udc96", "hp": 47, "hp_max": 80, "ataque": 10, "especial": "Curaci\u00f3n divina", "nivel": 1, "experiencia": 15, "dinero": 35, "inventario": ["Poci\u00f3n de vida"]}
+{"nombre": "Guerrero", "emoji": "\ud83d\udde1\ufe0f", "hp": 110, "hp_max": 110, "ataque": 17, "especial": "Golpe Poderoso", "nivel": 2, "experiencia": 0, "dinero": 10, "inventario": ["Poci\u00f3n de vida", "Espada peque\u00f1a", "Poci\u00f3n de vida"]}

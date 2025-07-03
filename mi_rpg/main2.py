@@ -109,9 +109,9 @@ def elegir_personaje():
 # ----------------------
 def contar_historia():
     print("""
-🌍 Bienvenido a Eldoria...
-Tu aldea fue devastada por Umbrax.
-Deberás recorrer caminos, batallar y fortalecerte para vencerlo.
+     🏰 The Cursed Castle 🏰
+Tu aldea fue devastada por Varyan Grinn...
+Deberás , recorrer caminos, batallar y fortalecerte para vencerlo
     """)
 
 # ----------------------
