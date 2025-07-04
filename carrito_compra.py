@@ -9,7 +9,7 @@
         - ej. 2BNM8YT
 '''
 codigo_descuento = {
-    "2BNM8YT":0.1,
+    "2BNM8YT":0.10,
     "UGLYKID47":0.15,
 }
 productos = {
@@ -77,6 +77,6 @@ def calcular_boleta(usuario):
         else:
             print("El carrito no tiene productos")
     else:
-        print("El usuario no tiene carrito creado")
+        print(f"El usuario no tiene carrito creado{boleta}")
 
 calcular_boleta("jorgeb")

@@ -1,9 +1,11 @@
+# rpg_texto_mejorado.py
+
 import random
 import json
 import os
 
 # ----------------------
-# CLASE PRINCIPAL
+# CLASES DE PERSONAJE
 # ----------------------
 class Personaje:
     def __init__(self, nombre, emoji, hp, ataque, especial):
@@ -19,8 +21,7 @@ class Personaje:
         self.inventario = []
 
     def mostrar_info(self):
-        print(f"\n{self.nombre} {self.emoji} | Nivel {self.nivel} | HP: {self.hp}/{self.hp_max} \
-               | Ataque: {self.ataque} | Exp: {self.experiencia} | 💰: {self.dinero}")
+        print(f"\n{self.nombre} {self.emoji} | Nivel {self.nivel} | HP: {self.hp}/{self.hp_max} | Ataque: {self.ataque} | Exp: {self.experiencia} | 💰: {self.dinero}")
 
     def recibir_daño(self, cantidad):
         self.hp = max(self.hp - cantidad, 0)
@@ -28,8 +29,8 @@ class Personaje:
 
     def atacar(self, enemigo):
         daño = random.randint(self.ataque - 2, self.ataque + 2)
-        print(f"{self.nombre} ataca a {enemigo['nombre']} causando {daño} de daño.")
-        enemigo["hp"] = max(enemigo["hp"] - daño, 0)
+        print(f"{self.nombre} ataca a {enemigo.nombre} causando {daño} de daño.")
+        enemigo.recibir_daño(daño)
 
     def magia(self, enemigo):
         costo = 10
@@ -37,7 +38,7 @@ class Personaje:
             daño = random.randint(self.ataque, self.ataque + 10)
             self.dinero -= costo
             print(f"{self.nombre} usa magia y causa {daño} de daño por {costo} monedas.")
-            enemigo["hp"] = max(enemigo["hp"] - daño, 0)
+            enemigo.recibir_daño(daño)
         else:
             print("No tienes suficiente dinero para usar magia.")
 
@@ -62,7 +63,7 @@ class Personaje:
 
     def agregar_objeto(self, objeto):
         self.inventario.append(objeto)
-        print(f"🎒 Has obtenido: {objeto}")
+        print(f"🏢 Has obtenido: {objeto}")
 
     def usar_objeto(self):
         if not self.inventario:
@@ -82,49 +83,77 @@ class Personaje:
             print("Opción inválida.")
 
     def mostrar_inventario(self):
-        print("🎒 Inventario:", ", ".join(self.inventario) if self.inventario else "Vacío")
+        print("🏢 Inventario:", ", ".join(self.inventario) if self.inventario else "Vacío")
 
+class Guerrero(Personaje):
+    def __init__(self):
+        super().__init__("Guerrero", "🗡️", 100, 15, "Golpe Poderoso")
 
-# ----------------------
-# SELECCIONAR PERSONAJE
-# ----------------------
-def elegir_personaje():
-    personajes = {
-        "1": Personaje("Guerrero", "🗡️", 100, 15, "Golpe Poderoso"),
-        "2": Personaje("Mago", "🧙", 70, 20, "Bola de fuego"),
-        "3": Personaje("Sanador", "💖", 80, 10, "Curación divina"),
-        "4": Personaje("Pícaro", "🕶️", 90, 13, "Ataque sigiloso")
-    }
-    while True:
-        print("🧙‍♂️ Elige tu personaje:\n")
-        for k, pj in personajes.items():
-            print(f"{k}. {pj.nombre} {pj.emoji} | HP: {pj.hp} | Ataque: {pj.ataque}")
-        op = input("Número: ")
-        if op in personajes:
-            return personajes[op]
-        print("⚠️ Número inválido (1–4).")
+class Mago(Personaje):
+    def __init__(self):
+        super().__init__("Mago", "🧙", 70, 20, "Bola de fuego")
+
+class Sanador(Personaje):
+    def __init__(self):
+        super().__init__("Sanador", "💖", 80, 10, "Curación divina")
+
+class Picaro(Personaje):
+    def __init__(self):
+        super().__init__("Pícaro", "🕶️", 90, 13, "Ataque sigiloso")
 
 # ----------------------
-# HISTORIA
+# CLASE ENEMIGO
+# ----------------------
+class Enemigo:
+    def __init__(self, nombre, hp, ataque, exp, drop):
+        self.nombre = nombre
+        self.hp = hp
+        self.ataque = ataque
+        self.exp = exp
+        self.drop = drop
+
+    def recibir_daño(self, cantidad):
+        self.hp = max(self.hp - cantidad, 0)
+
+# ----------------------
+# FUNCIONES DEL JUEGO
 # ----------------------
 def contar_historia():
     print("""
      🏰 The Cursed Castle 🏰
 Tu aldea fue devastada por Varyan Grinn...
-Deberás , recorrer caminos, batallar y fortalecerte para vencerlo
+Deberás recorrer caminos, batallar y fortalecerte para vencerlo
     """)
 
-# ----------------------
-# COMBATE
-# ----------------------
+def elegir_personaje():
+    opciones = {
+        "1": Guerrero(),
+        "2": Mago(),
+        "3": Sanador(),
+        "4": Picaro()
+    }
+    while True:
+        print("\n✨ Elige tu personaje:")
+        for k, pj in opciones.items():
+            print(f"{k}. {pj.nombre} {pj.emoji} | HP: {pj.hp} | Ataque: {pj.ataque}")
+        op = input("Número: ")
+        if op in opciones:
+            return opciones[op]
+        print("⚠️ Número inválido (1–4).")
+
+def crear_enemigo():
+    lista = [
+        ("Slime", 30, 5, 10, "Poción de vida"),
+        ("Murciélago", 40, 7, 12, "Colmillo negro"),
+        ("Esqueleto", 50, 9, 15, "Poción de vida")
+    ]
+    return Enemigo(*random.choice(lista))
+
 def combate(jugador, enemigo):
-    print(f"\n⚔️ Aparece {enemigo['nombre']} (HP: {enemigo['hp']})")
-    while jugador.hp > 0 and enemigo["hp"] > 0:
+    print(f"\n⚔️ Aparece {enemigo.nombre} (HP: {enemigo.hp})")
+    while jugador.hp > 0 and enemigo.hp > 0:
         jugador.mostrar_info()
-        print("\n1. Ataque")
-        print("2. Magia (💰10 monedas)")
-        print("3. Curar")
-        print("4. Usar objeto")
+        print("\n1. Ataque\n2. Magia (💰10 monedas)\n3. Curar\n4. Usar objeto")
         accion = input("¿Qué haces? ")
         if accion == "1":
             jugador.atacar(enemigo)
@@ -136,32 +165,21 @@ def combate(jugador, enemigo):
             jugador.usar_objeto()
         else:
             print("Acción inválida.")
+            continue
 
-        if enemigo["hp"] > 0:
-            dmg = random.randint(enemigo["ataque"] - 2, enemigo["ataque"] + 2)
+        if enemigo.hp > 0:
+            dmg = random.randint(enemigo.ataque - 2, enemigo.ataque + 2)
             jugador.recibir_daño(dmg)
+
     if jugador.hp <= 0:
         print("💀 Has muerto. Fin de la aventura.")
         exit()
-    print(f"✅ Has vencido a {enemigo['nombre']}!")
-    jugador.ganar_exp(enemigo["exp"])
-    jugador.agregar_objeto(enemigo["drop"])
-    jugador.dinero += enemigo["exp"]
-    print(f"💰 Ganaste {enemigo['exp']} monedas.")
+    print(f"✅ Has vencido a {enemigo.nombre}!")
+    jugador.ganar_exp(enemigo.exp)
+    jugador.agregar_objeto(enemigo.drop)
+    jugador.dinero += enemigo.exp
+    print(f"💰 Ganaste {enemigo.exp} monedas.")
 
-# ----------------------
-# ENEMIGOS
-# ----------------------
-def crear_enemigo():
-    return random.choice([
-        {"nombre": "Slime", "hp": 30, "ataque": 5, "exp": 10, "drop": "Poción de vida"},
-        {"nombre": "Murciélago", "hp": 40, "ataque": 7, "exp": 12, "drop": "Colmillo negro"},
-        {"nombre": "Esqueleto", "hp": 50, "ataque": 9, "exp": 15, "drop": "Poción de vida"}
-    ])
-
-# ----------------------
-# TIENDA
-# ----------------------
 def tienda(jugador):
     items = {"1": ("Poción de vida", 20), "2": ("Espada pequeña", 50)}
     print("\n🏪 Bienvenido a la tienda:")
@@ -178,34 +196,28 @@ def tienda(jugador):
     else:
         print("No compraste nada.")
 
-# ----------------------
-# GUARDAR / CARGAR PROGRESO
-# ----------------------
-SAVE_FILE = "guardar.json"
-
 def guardar(jugador):
     data = jugador.__dict__
-    with open(SAVE_FILE, "w") as f:
+    with open("guardar.json", "w") as f:
         json.dump(data, f)
     print("💾 Juego guardado.")
 
 def cargar():
-    if os.path.exists(SAVE_FILE):
-        with open(SAVE_FILE) as f:
+    if os.path.exists("guardar.json"):
+        with open("guardar.json") as f:
             data = json.load(f)
-        pj = Personaje(data['nombre'], data['emoji'], data['hp_max'], data['ataque'], data['especial'])
-        pj.hp = data['hp']
-        pj.nivel = data['nivel']
-        pj.experiencia = data['experiencia']
-        pj.dinero = data['dinero']
-        pj.inventario = data['inventario']
+        clase = {
+            "Guerrero": Guerrero,
+            "Mago": Mago,
+            "Sanador": Sanador,
+            "Pícaro": Picaro
+        }.get(data['nombre'], Personaje)
+        pj = clase()
+        pj.__dict__.update(data)
         print("✅ Juego cargado.")
         return pj
     return None
 
-# ----------------------
-# JUEGO PRINCIPAL
-# ----------------------
 def juego():
     contar_historia()
     jugador = cargar() or elegir_personaje()
@@ -213,7 +225,7 @@ def juego():
 
     caminos = ["Bosque", "Cueva", "Pueblo"]
     for lugar in caminos:
-        print(f"\n🏞️ Llegas al {lugar}.")
+        print(f"\n🌾 Llegas al {lugar}.")
         enemigo = crear_enemigo()
         combate(jugador, enemigo)
         tienda(jugador)
@@ -222,11 +234,5 @@ def juego():
 
     print("\n🎉 ¡Llegaste al final del camino por ahora! Continúa tu aventura luego.")
 
-# ----------------------
-# PUNTO DE ENTRADA
-# ----------------------
 if __name__ == "__main__":
     juego()
-
-
-

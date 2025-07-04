@@ -54,7 +54,7 @@ libros = [
 def buscar_rut(rut):
     for usuario in usuarios:
         if usuario["rut"] == rut:
-            print("el usuario existe")
+            print(f"el usuario existe{usuario['nombre']}{usuario['apellido']}")
             return usuario
     
     print("el usuario no existe")
@@ -73,12 +73,20 @@ while True:
         4 - Salir
 
         """)
+      
+  try:
+      opcion= int(input("Digite su opcion porfavor.   "))
+      if opcion == 1:
+        rut=input("ingrese el rut sin puntos y con guion   ")
+        buscar_rut(rut)
+        
+           
+  except ValueError as error:
+     print("ingrese solo numeros porfavor , vuelve a intentarlo")
+     
 
-  rut=input("ingrese el rut sin puntos y con guion   ")
-  buscar_rut(rut)
-   
-     
-     
+
+
      
      
 

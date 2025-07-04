@@ -37,13 +37,11 @@ def shows_por_mes(mes):
         return
 
     for key in shows:
-        try:
+        
             fecha = shows[key][2].split("-")
             if int(fecha[1]) == mes:
                 cant_shows += 1
-        except ValueError as error:
-            print("Error al procesar fecha:", error)
-            return
+       
 
     porcentaje = (cant_shows * 100) / total_shows
     print(f"Hay {cant_shows} show(s) en el mes {mes}.")
