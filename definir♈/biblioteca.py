@@ -54,7 +54,7 @@ libros = [
 def buscar_rut(rut):
     for usuario in usuarios:
         if usuario["rut"] == rut:
-            print(f"el usuario existe{usuario['nombre']}{usuario['apellido']}")
+            print(f"el usuario existe {usuario['nombre']} {usuario['apellido']}")
             return usuario
     
     print("el usuario no existe")

@@ -142,10 +142,16 @@ usuarios=[]
 
 #validaciones------------------------------------------------------------------------------
 def validar_contraseña(contraseña):
-    if len(contraseña)<8 or " " in contraseña or not any(c.isalpha()for c in contraseña)or not any(c.isdigit()for c in contraseña):
+    tiene_longitud = len(contraseña) >= 8
+    sin_espacios = " " not in contraseña
+    tiene_letra = any(c.isalpha() for c in contraseña)
+    tiene_numero = any(c.isdigit() for c in contraseña)
+
+    if tiene_longitud and sin_espacios and tiene_letra and tiene_numero:
+        return True
+    else:
         print("Contraseña inválida. Intente otra.")
         return False
-    return True
 
 def validar_sexo(sexo):
     if sexo!="M" and sexo!="F":
@@ -213,3 +219,24 @@ while True:
             break
         else:print("Ingrese una opción válida.")
     except ValueError:print("Ingrese una opción válida.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
