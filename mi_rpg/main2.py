@@ -134,8 +134,8 @@ def elegir_personaje():
     }
     while True:
         print("\n✨ Elige tu personaje:")
-        for k, pj in opciones.items():
-            print(f"{k}. {pj.nombre} {pj.emoji} | HP: {pj.hp} | Ataque: {pj.ataque}")
+        for clave, pj in opciones.items():
+            print(f"{clave}. {pj.nombre} {pj.emoji} | HP: {pj.hp} | Ataque: {pj.ataque}")
         op = input("Número: ")
         if op in opciones:
             return opciones[op]
@@ -220,9 +220,12 @@ def cargar():
 
 def juego():
     contar_historia()
-    jugador = cargar() or elegir_personaje()
-    jugador.mostrar_info()
+    opcion = input("quieres cargar la partida guardada 1 o nueva partida 2")
+    if opcion == "1":
+        jugador = cargar() 
+    else : jugador = elegir_personaje()
 
+    jugador.mostrar_info()
     caminos = ["Bosque", "Cueva", "Pueblo"]
     for lugar in caminos:
         print(f"\n🌾 Llegas al {lugar}.")
